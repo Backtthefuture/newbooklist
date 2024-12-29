@@ -1,64 +1,84 @@
 // pages/index/index.js
+const app = getApp()
+
 Page({
   data: {
     celebrities: [],
+    isScrolled: false,
+    currentIndex: 0,
     loading: true
   },
 
-  onLoad: function () {
+  onLoad: function() {
     this.loadCelebrityData()
   },
 
-  // 加载名人数据
   async loadCelebrityData() {
-    try {
-      wx.showLoading({
-        title: '加载中...',
-      })
+    wx.showLoading({
+      title: '加载中...',
+    })
 
+    try {
       const db = wx.cloud.database()
-      const celebritiesRes = await db.collection('celebrities').get()
+      const { data: celebrities } = await db.collection('celebrities').get()
       
       // 获取每个名人的书单
-      const celebrities = await Promise.all(
-        celebritiesRes.data.map(async celebrity => {
-          const booksRes = await db.collection('books')
+      const celebritiesWithBooks = await Promise.all(
+        celebrities.map(async celebrity => {
+          const { data: books } = await db.collection('books')
             .where({
               celebrityId: celebrity._id
             })
             .get()
           return {
             ...celebrity,
-            books: booksRes.data
+            books
           }
         })
       )
 
       this.setData({
-        celebrities,
+        celebrities: celebritiesWithBooks,
         loading: false
       })
-
-      wx.hideLoading()
     } catch (error) {
-      console.error('加载数据失败：', error)
-      wx.hideLoading()
       wx.showToast({
-        title: '加载失败，请重试',
-        icon: 'none'
+        title: '加载失败',
+        icon: 'error'
       })
+      console.error('加载数据失败：', error)
+    } finally {
+      wx.hideLoading()
     }
   },
 
-  // 下拉刷新
-  async onPullDownRefresh() {
+  onPullDownRefresh: async function() {
     await this.loadCelebrityData()
     wx.stopPullDownRefresh()
   },
 
-  // 滑动切换事件
-  onSwiperChange(e) {
+  onScroll: function(e) {
+    const scrollTop = e.detail.scrollTop
+    const isScrolled = scrollTop > 100
+
+    if (this.data.isScrolled !== isScrolled) {
+      this.setData({
+        isScrolled
+      })
+    }
+  },
+
+  onSwiperChange: function(e) {
     const { current } = e.detail
-    // 可以在这里添加切换效果或统计
+    this.setData({
+      currentIndex: current,
+      isScrolled: false
+    })
+  },
+
+  onTapBook: function(e) {
+    const { bookId } = e.currentTarget.dataset
+    // 这里可以添加点击书籍的处理逻辑
+    console.log('点击了书籍：', bookId)
   }
 })

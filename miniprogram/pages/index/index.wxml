@@ -1,27 +1,51 @@
 <swiper class="container" bindchange="onSwiperChange">
-  <swiper-item wx:for="{{celebrities}}" wx:key="id">
-    <scroll-view class="scroll-view" scroll-y>
-      <!-- 名人信息卡片 -->
-      <view class="celebrity-card card">
-        <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+  <swiper-item wx:for="{{celebrities}}" wx:key="id" class="swiper-item">
+    <scroll-view 
+      class="scroll-view" 
+      scroll-y 
+      enhanced="true"
+      bounces="true"
+      show-scrollbar="false"
+      bindscroll="onScroll">
+      
+      <!-- 名人信息区域 -->
+      <view class="celebrity-section {{isScrolled ? 'minimized' : ''}}">
         <view class="celebrity-info">
-          <text class="title">{{item.name}}</text>
-          <text class="subtitle">{{item.introduction}}</text>
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+          <view class="text-info">
+            <text class="celebrity-name">{{item.name}}</text>
+            <text class="celebrity-intro">{{item.introduction}}</text>
+          </view>
         </view>
       </view>
       
-      <!-- 书籍列表 -->
+      <!-- 书单列表区域 -->
       <view class="books-container">
-        <view class="book-card card" wx:for="{{item.books}}" wx:key="id" wx:for-item="book">
-          <image class="book-cover" src="{{book.cover}}" mode="aspectFill" />
+        <view 
+          class="book-card" 
+          wx:for="{{item.books}}" 
+          wx:key="id" 
+          wx:for-item="book"
+          bindtap="onTapBook"
+          data-book-id="{{book.id}}"
+        >
+          <image 
+            class="book-cover" 
+            src="{{book.cover}}" 
+            mode="aspectFill" 
+          />
           <view class="book-info">
-            <text class="book-title">{{book.title}}</text>
+            <view class="book-header">
+              <text class="book-title">{{book.title}}</text>
+              <view class="book-rating">
+                <text class="rating-text">{{book.doubanScore}}</text>
+              </view>
+            </view>
             <text class="book-author">{{book.author}}</text>
             <text class="book-publisher">{{book.publisher}}</text>
-            <view class="book-rating">
-              <text class="rating-text">豆瓣评分：{{book.doubanScore}}</text>
+            <view class="book-recommendation">
+              <text class="recommendation-text">{{book.recommendation}}</text>
             </view>
-            <text class="book-recommendation">{{book.recommendation}}</text>
           </view>
         </view>
       </view>
