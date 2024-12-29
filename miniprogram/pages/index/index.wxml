@@ -1,0 +1,30 @@
+<swiper class="container" bindchange="onSwiperChange">
+  <swiper-item wx:for="{{celebrities}}" wx:key="id">
+    <scroll-view class="scroll-view" scroll-y>
+      <!-- 名人信息卡片 -->
+      <view class="celebrity-card card">
+        <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+        <view class="celebrity-info">
+          <text class="title">{{item.name}}</text>
+          <text class="subtitle">{{item.introduction}}</text>
+        </view>
+      </view>
+      
+      <!-- 书籍列表 -->
+      <view class="books-container">
+        <view class="book-card card" wx:for="{{item.books}}" wx:key="id" wx:for-item="book">
+          <image class="book-cover" src="{{book.cover}}" mode="aspectFill" />
+          <view class="book-info">
+            <text class="book-title">{{book.title}}</text>
+            <text class="book-author">{{book.author}}</text>
+            <text class="book-publisher">{{book.publisher}}</text>
+            <view class="book-rating">
+              <text class="rating-text">豆瓣评分：{{book.doubanScore}}</text>
+            </view>
+            <text class="book-recommendation">{{book.recommendation}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
