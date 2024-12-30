@@ -1,0 +1,225 @@
+.container {
+  min-height: 100vh;
+  background: #F8F9FA;
+  padding: 20px;
+}
+
+/* 名人信息区域 */
+.celebrity-info {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 16px;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2D3748;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.book-count {
+  font-size: 14px;
+  color: #718096;
+}
+
+/* 书籍列表 */
+.books-list {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2D3748;
+}
+
+.add-btn {
+  background: #4B6CB7;
+  color: white;
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+
+.list-content {
+  min-height: 200px;
+}
+
+/* 书籍项 */
+.book-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #E2E8F0;
+  background: white;
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.book-item:last-child {
+  border-bottom: none;
+}
+
+.book-item.dragging {
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+.book-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 12px;
+}
+
+.book-cover {
+  width: 45px;
+  height: 60px;
+  border-radius: 4px;
+  background: #E2E8F0;
+  flex-shrink: 0;
+}
+
+.book-info {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.book-title {
+  flex: 1;
+  font-size: 15px;
+  color: #2D3748;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-recommendation {
+  font-size: 14px;
+  color: #718096;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.drag-handle {
+  color: #A0AEC0;
+  font-size: 24px;
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: move;
+}
+
+.book-actions {
+  display: flex;
+  gap: 4px;
+  padding-left: 8px;
+}
+
+.action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn .icon {
+  font-size: 16px;
+}
+
+.action-btn.edit {
+  background: #EBF4FF;
+  color: #4B6CB7;
+}
+
+.action-btn.edit:active {
+  background: #4B6CB7;
+  color: white;
+}
+
+.action-btn.delete {
+  background: #FFF5F5;
+  color: #E53E3E;
+}
+
+.action-btn.delete:active {
+  background: #E53E3E;
+  color: white;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.primary-btn {
+  background: #007AFF;
+  color: white;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+.secondary-btn {
+  background: #F2F2F7;
+  color: #007AFF;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #007AFF;
+}
+
+/* 空状态 */
+.empty-tip {
+  text-align: center;
+  padding: 40px 0;
+  color: #718096;
+}
+
+.sub-tip {
+  font-size: 14px;
+  color: #A0AEC0;
+  display: block;
+  margin-top: 8px;
+}

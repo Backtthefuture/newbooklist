@@ -1,0 +1,191 @@
+.container {
+  min-height: 100vh;
+  background: #F7FAFC;
+  padding: 20px;
+}
+
+/* 封面上传 */
+.cover-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cover-wrapper {
+  width: 120px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #EDF2F7;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cover-wrapper:active {
+  transform: scale(0.98);
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-wrapper::after {
+  content: '点击更换';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.cover-wrapper:hover::after {
+  transform: translateY(0);
+}
+
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #A0AEC0;
+  background: #F7FAFC;
+  border: 2px dashed #E2E8F0;
+  border-radius: 8px;
+}
+
+.cover-placeholder .icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.cover-placeholder .text {
+  font-size: 14px;
+}
+
+/* 表单 */
+.form-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  display: block;
+  font-size: 15px;
+  color: #4A5568;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: #E53E3E;
+  margin-left: 4px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 15px;
+  color: #2D3748;
+  transition: all 0.3s ease;
+}
+
+.form-item.error .input {
+  border-color: #E53E3E;
+}
+
+.error-text {
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  font-size: 12px;
+  color: #E53E3E;
+}
+
+.score-input {
+  width: 300rpx;  /* 评分输入框宽度较短 */
+}
+
+.textarea-wrapper {
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  height: 120px;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 15px;
+  color: #2D3748;
+}
+
+.word-count {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+/* 按钮 */
+.button-section {
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.save-button {
+  width: 100%;
+  height: 44px;
+  background: linear-gradient(135deg, #4B6CB7 0%, #182848 100%);
+  border-radius: 22px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.save-button.disabled {
+  opacity: 0.6;
+  background: #A0AEC0;
+}
+
+.save-tip {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #E53E3E;
+  margin-top: 8px;
+}

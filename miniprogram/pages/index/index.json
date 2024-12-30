@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarTitleText": "名人书单",
+  "usingComponents": {
+    "book-detail": "/components/book-detail/book-detail"
+  }
+}

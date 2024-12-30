@@ -1,0 +1,54 @@
+/**app.wxss**/
+page {
+  --primary-color: #007AFF;
+  --background-color: #F5F5F5;
+  --text-color: #333333;
+  --secondary-text-color: #666666;
+  
+  background: var(--background-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* 通用卡片样式 */
+.card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin: 8px;
+  padding: 16px;
+}
+
+/* 通用文本样式 */
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--secondary-text-color);
+  margin-top: 4px;
+}
+
+/* 通用图片样式 */
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.book-cover {
+  width: 90px;
+  height: 120px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

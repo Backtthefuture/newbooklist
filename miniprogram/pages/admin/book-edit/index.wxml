@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 封面上传 -->
+  <view class="cover-section">
+    <view class="cover-wrapper" bindtap="onChooseCover">
+      <image 
+        wx:if="{{tempCover || coverUrl}}" 
+        class="cover-image" 
+        src="{{tempCover || coverUrl}}" 
+        mode="aspectFill"
+      />
+      <view wx:else class="cover-placeholder">
+        <text class="icon">+</text>
+        <text class="text">上传封面</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-section">
+    <view class="form-item {{!validation.title ? 'error' : ''}}">
+      <text class="label">书名<text class="required">*</text></text>
+      <input 
+        class="input" 
+        value="{{title}}"
+        placeholder="请输入书名" 
+        maxlength="50"
+        bindinput="onTitleInput"
+      />
+      <text wx:if="{{!validation.title}}" class="error-text">请输入书名</text>
+    </view>
+
+    <view class="form-item {{!validation.author ? 'error' : ''}}">
+      <text class="label">作者<text class="required">*</text></text>
+      <input 
+        class="input" 
+        value="{{author}}"
+        placeholder="请输入作者" 
+        maxlength="50"
+        bindinput="onAuthorInput"
+      />
+      <text wx:if="{{!validation.author}}" class="error-text">请输入作者</text>
+    </view>
+
+    <view class="form-item {{!validation.score ? 'error' : ''}}">
+      <text class="label">豆瓣评分</text>
+      <input 
+        class="input score-input" 
+        type="digit"
+        value="{{doubanScore}}"
+        placeholder="请输入评分（0-10分，可保留一位小数）" 
+        bindinput="onScoreInput"
+        bindblur="onScoreBlur"
+      />
+      <text wx:if="{{!validation.score}}" class="error-text">评分必须在0-10之间</text>
+    </view>
+
+    <view class="form-item">
+      <text class="label">推荐语</text>
+      <view class="textarea-wrapper">
+        <textarea 
+          class="textarea" 
+          value="{{recommendation}}"
+          placeholder="请输入推荐语（选填）" 
+          maxlength="500"
+          bindinput="onRecommendationInput"
+        />
+        <text class="word-count">{{recommendation.length}}/500</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="button-section">
+    <button 
+      class="save-button {{canSave ? '' : 'disabled'}}" 
+      bindtap="onSave"
+    >保存</button>
+    <text wx:if="{{!canSave}}" class="save-tip">请填写必填项并确保输入正确</text>
+  </view>
+</view>

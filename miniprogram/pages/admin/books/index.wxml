@@ -1,0 +1,72 @@
+<view class="container">
+  <!-- 名人信息区域 -->
+  <view class="celebrity-info">
+    <image class="avatar" src="{{celebrity.avatar}}" mode="aspectFill" />
+    <view class="info">
+      <text class="name">{{celebrity.name}}</text>
+      <text class="book-count">{{books.length || 0}}本书籍</text>
+    </view>
+  </view>
+
+  <!-- 书籍列表 -->
+  <view class="books-list">
+    <view class="list-header">
+      <text class="title">书籍列表</text>
+      <view class="action-buttons">
+        <button class="primary-btn" bindtap="onAddBook">添加书籍</button>
+        <button class="primary-btn" bindtap="onBatchUpload">批量上传</button>
+        <button class="secondary-btn" bindtap="downloadTemplate">下载模板</button>
+      </view>
+    </view>
+
+    <view class="list-content">
+      <block wx:if="{{books.length > 0}}">
+        <view 
+          wx:for="{{books}}" 
+          wx:key="_id"
+          id="book-{{index}}"
+          class="book-item {{currentIndex === index ? 'dragging' : ''}}"
+          style="{{currentIndex === index ? 'transform: translateY(' + (moveY - startY) + 'px)' : ''}}"
+        >
+          <!-- 拖动手柄 -->
+          <view 
+            class="drag-handle"
+            data-index="{{index}}"
+            catch:touchstart="onDragStart"
+            catch:touchmove="onDragMove"
+            catch:touchend="onDragEnd"
+            catch:touchcancel="onDragEnd"
+          >⋮</view>
+
+          <!-- 书籍内容 -->
+          <view class="book-content" bindtap="onEditBook" data-id="{{item._id}}">
+            <image class="book-cover" src="{{item.coverUrl}}" mode="aspectFill" />
+            <text class="book-title">{{item.title}}</text>
+          </view>
+
+          <!-- 操作按钮 -->
+          <view class="book-actions">
+            <view 
+              class="action-btn edit"
+              catchtap="onEditBook"
+              data-id="{{item._id}}"
+            >
+              <text class="icon">✎</text>
+            </view>
+            <view 
+              class="action-btn delete"
+              catchtap="onDeleteBook"
+              data-id="{{item._id}}"
+            >
+              <text class="icon">✕</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:else class="empty-tip">
+        <text>暂无书籍</text>
+        <text class="sub-tip">点击上方按钮添加书籍</text>
+      </view>
+    </view>
+  </view>
+</view>

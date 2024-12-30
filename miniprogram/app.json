@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/admin/index/index",
+    "pages/admin/celebrity-edit/index",
+    "pages/admin/books/index",
+    "pages/admin/book-edit/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "名人书单",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "shareTimeline": {
+    "enable": true
+  }
+}

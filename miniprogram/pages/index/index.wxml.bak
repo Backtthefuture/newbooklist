@@ -1,0 +1,74 @@
+<navigator 
+  wx:if="{{isAdmin}}" 
+  url="/pages/admin/index/index"
+  class="admin-entry"
+>管理</navigator>
+
+<swiper 
+  class="container" 
+  current="{{currentIndex}}"
+  bindchange="onSwiperChange"
+>
+  <swiper-item 
+    wx:for="{{celebrities}}" 
+    wx:key="_id" 
+    class="swiper-item"
+  >
+    <scroll-view 
+      class="scroll-view" 
+      scroll-y 
+      enhanced="true"
+      bounces="true"
+      show-scrollbar="false"
+      bindscroll="onScroll"
+      animation="{{animationData}}"
+      refresher-enabled="{{true}}"
+      refresher-triggered="{{isRefreshing}}"
+      bindrefresherrefresh="onRefresh"
+      refresher-threshold="100"
+    >
+      <!-- 名人信息区域 -->
+      <view class="celebrity-section {{isScrolled ? 'minimized' : ''}}">
+        <view class="celebrity-info">
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill" lazy-load="true" />
+          <view class="text-info">
+            <text class="celebrity-name">{{item.name}}</text>
+            <text class="celebrity-intro">{{item.introduction}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 书单列表区域 -->
+      <view class="books-container">
+        <view 
+          class="book-card" 
+          wx:for="{{item.books}}" 
+          wx:key="_id" 
+          wx:for-item="book"
+          bindtap="onTapBook"
+          data-book="{{book}}"
+        >
+          <image 
+            class="book-cover" 
+            src="{{book.coverUrl}}" 
+            mode="aspectFill" 
+            lazy-load="true"
+          />
+          <view class="book-info">
+            <view class="book-header">
+              <text class="book-title">{{book.title}}</text>
+              <view class="book-rating" wx:if="{{book.doubanScore}}">
+                <text class="rating-text">{{book.doubanScore}}</text>
+              </view>
+            </view>
+            <text class="book-author">{{book.author}}</text>
+            <text class="book-publisher" wx:if="{{book.publisher}}">{{book.publisher}}</text>
+            <view class="book-recommendation" wx:if="{{book.recommendation}}">
+              <text class="recommendation-text">{{book.recommendation}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

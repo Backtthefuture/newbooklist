@@ -1,0 +1,29 @@
+<view class="book-detail-mask {{show ? 'show' : ''}}" bindtap="onClose">
+  <view class="book-detail-content" catchtap="preventDefault">
+    <!-- 顶部关闭按钮 -->
+    <view class="close-btn" bindtap="onClose">×</view>
+    
+    <!-- 书籍基本信息 -->
+    <view class="book-header">
+      <image class="book-cover" src="{{book.coverUrl}}" mode="aspectFill"/>
+      <view class="book-info">
+        <view class="book-title">{{book.title}}</view>
+        <view class="book-author">{{book.author}}</view>
+        <view class="book-publisher" wx:if="{{book.publisher}}">{{book.publisher}}</view>
+        <view class="book-rating" wx:if="{{book.doubanScore}}">
+          <text class="rating-label">豆瓣评分：</text>
+          <text class="rating-score">{{book.doubanScore}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推荐语 -->
+    <view class="book-recommendation" wx:if="{{book.recommendation}}">
+      <view class="section-title">推荐语</view>
+      <text class="recommendation-text">{{book.recommendation}}</text>
+    </view>
+
+    <!-- 购买按钮 -->
+    <view class="buy-button" bindtap="onBuy">立即购买</view>
+  </view>
+</view>

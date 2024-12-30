@@ -1,0 +1,132 @@
+.book-detail-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.book-detail-mask.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.book-detail-content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 40rpx;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.book-detail-mask.show .book-detail-content {
+  transform: translateY(0);
+}
+
+.close-btn {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 40rpx;
+  color: #999;
+  z-index: 1;
+}
+
+.book-header {
+  display: flex;
+  margin-bottom: 40rpx;
+  padding-top: 20rpx;
+}
+
+.book-cover {
+  width: 240rpx;
+  height: 320rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+  flex: 1;
+  margin-left: 30rpx;
+  padding-right: 40rpx;
+}
+
+.book-title {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.book-author {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.book-publisher {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.book-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.rating-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.rating-score {
+  font-size: 32rpx;
+  color: #ff9900;
+  font-weight: 500;
+  margin-left: 8rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  margin: 40rpx 0 20rpx;
+}
+
+.description-text,
+.recommendation-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.buy-button {
+  margin: 60rpx auto 40rpx;
+  width: 80%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: linear-gradient(to right, #4c84ff, #3b66ff);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  box-shadow: 0 8rpx 16rpx rgba(75, 132, 255, 0.2);
+}
