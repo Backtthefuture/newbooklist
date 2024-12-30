@@ -123,9 +123,9 @@ Page({
 
   // 管理书籍
   onManageBooks(e) {
-    const { id } = e.currentTarget.dataset
+    const { celebrityId } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/admin/books/index?id=${id}`
+      url: `/pages/admin/books/index?id=${celebrityId}`
     })
   },
 

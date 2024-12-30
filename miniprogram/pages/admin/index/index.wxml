@@ -1,0 +1,37 @@
+<!-- 主容器 -->
+<view class="container">
+  <!-- 顶部操作栏 -->
+  <view class="header">
+    <button class="add-btn" bindtap="onAddCelebrity">添加名人</button>
+  </view>
+
+  <!-- 名人列表 -->
+  <block wx:for="{{celebrities}}" wx:key="_id">
+    <view class="celebrity-item">
+      <!-- 名人基本信息 -->
+      <view class="celebrity-info">
+        <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <view class="text-info">
+          <text class="name">{{item.name}}</text>
+          <text class="intro">{{item.introduction}}</text>
+        </view>
+      </view>
+
+      <!-- 操作按钮组 -->
+      <view class="actions">
+        <button class="action-btn edit" bindtap="onEdit" data-id="{{item._id}}">编辑</button>
+        <button class="action-btn delete" bindtap="onDelete" data-id="{{item._id}}">删除</button>
+        <button class="action-btn books" 
+                bindtap="onManageBooks" 
+                data-celebrity-id="{{item._id}}">
+          管理书单
+        </button>
+      </view>
+    </view>
+  </block>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

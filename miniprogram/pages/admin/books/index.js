@@ -1,7 +1,11 @@
 Page({
   data: {
     celebrityId: '', // 名人ID
-    celebrity: null, // 名人信息
+    celebrity: {
+      name: '',
+      avatar: '',
+      introduction: ''
+    }, // 名人信息
     books: [], // 书籍列表
     isDragging: false, // 是否正在拖拽
     startY: 0, // 拖拽开始的Y坐标
@@ -13,9 +17,19 @@ Page({
   },
 
   onLoad(options) {
+    console.log('书单页面接收到的参数：', options) // 添加日志
     if (options.id) {
       this.setData({ celebrityId: options.id })
+      console.log('设置的 celebrityId:', options.id) // 添加日志
       this.loadData()
+    } else {
+      wx.showToast({
+        title: '参数错误',
+        icon: 'error'
+      })
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 1500)
     }
   },
 
@@ -26,25 +40,39 @@ Page({
     })
 
     try {
+      console.log('开始调用云函数，celebrityId:', this.data.celebrityId) // 添加日志
       const { result } = await wx.cloud.callFunction({
         name: 'getBookList',
         data: {
           celebrityId: this.data.celebrityId
         }
       })
+      
+      console.log('云函数返回结果：', result) // 添加日志
 
-      if (result.success) {
+      if (result && result.success) {
+        const celebrity = result.data.celebrity || {
+          name: '',
+          avatar: '',
+          introduction: ''
+        }
+        const books = result.data.books || []
+        
+        console.log('设置数据前：', { celebrity, books }) // 添加日志
+        
         this.setData({
-          celebrity: result.data.celebrity,
-          books: result.data.books
+          celebrity,
+          books
         })
+        
+        console.log('设置数据后：', this.data) // 添加日志
       } else {
-        throw new Error(result.message)
+        throw new Error(result?.message || '加载失败')
       }
     } catch (error) {
       console.error('加载数据失败：', error)
       wx.showToast({
-        title: '加载失败',
+        title: error.message || '加载失败',
         icon: 'error'
       })
     } finally {
